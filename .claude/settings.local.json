@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docetl --version:*)",
+      "Bash(cd:*)",
+      "Bash(python prepare_input.py:*)",
+      "Bash(if [ -n \"$OPENAI_API_KEY\" ])",
+      "Bash(then echo \"API key found\")",
+      "Bash(else echo \"No API key found\")",
+      "Bash(fi)",
+      "Bash(chmod:*)",
+      "Bash(tree:*)",
+      "Bash(bash:*)",
+      "Bash(python -m json.tool:*)",
+      "Bash(cd /home/shikha/Main/Coding/Prototype 4/docetl_pipeline && timeout 600 docetl run:*)",
+      "Bash(pip install:*)",
+      "Bash(python3:*)",
+      "Bash(curl:*)",
+      "Bash(grep:*)",
+      "Bash(for i in {1..15})",
+      "Bash(do echo \"Check $i:\")",
+      "Bash(done)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

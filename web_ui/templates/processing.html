@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+
+{% block title %}Processing - PeerLens{% endblock %}
+
+{% set active_step = 3 %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Step 3: Processing Reviews</h1>
+    <p>The DocETL pipeline is synthesizing your peer reviews</p>
+</div>
+
+<div class="processing-container">
+    <!-- Overall Progress -->
+    <div class="progress-section">
+        <h2>Overall Progress</h2>
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div id="overall-progress" class="progress-fill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progress-percentage">0%</span>
+                <span id="progress-message">Initializing...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pipeline Stages -->
+    <div class="pipeline-stages">
+        <h2>Pipeline Stages</h2>
+
+        <div class="stage-item" id="stage-prepare" data-stage="prepare">
+            <div class="stage-icon">
+                <span class="icon-pending">⏳</span>
+                <span class="icon-active" style="display: none;">🔄</span>
+                <span class="icon-complete" style="display: none;">✅</span>
+            </div>
+            <div class="stage-content">
+                <h3>Stage 1: Prepare Input</h3>
+                <p>Converting review data to DocETL format</p>
+                <div class="stage-details">
+                    <strong>What's happening:</strong> Flattening review records, adding manuscript context
+                </div>
+            </div>
+        </div>
+
+        <div class="stage-item" id="stage-extract" data-stage="extract">
+            <div class="stage-icon">
+                <span class="icon-pending">⏳</span>
+                <span class="icon-active" style="display: none;">🔄</span>
+                <span class="icon-complete" style="display: none;">✅</span>
+            </div>
+            <div class="stage-content">
+                <h3>Stage 2: Extract Issues</h3>
+                <p>AI analyzes each review for concerns and recommendations</p>
+                <div class="ai-model-badge">
+                    <span class="model-icon">🤖</span>
+                    <span class="model-name">GPT-4o</span>
+                </div>
+                <div class="stage-details">
+                    <strong>What's happening:</strong> Extracting issues, categorizing by severity, capturing evidence excerpts
+                </div>
+                <div class="stage-example">
+                    <strong>Example extraction:</strong>
+                    <code>
+                        {
+                          "severity": "MAJOR",
+                          "category": "methodology",
+                          "excerpt": "The study lacks adequate control group..."
+                        }
+                    </code>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage-item" id="stage-synthesize" data-stage="synthesize">
+            <div class="stage-icon">
+                <span class="icon-pending">⏳</span>
+                <span class="icon-active" style="display: none;">🔄</span>
+                <span class="icon-complete" style="display: none;">✅</span>
+            </div>
+            <div class="stage-content">
+                <h3>Stage 3: Synthesize Briefs</h3>
+                <p>Combining reviews into structured editorial briefs</p>
+                <div class="ai-model-badge">
+                    <span class="model-icon">🤖</span>
+                    <span class="model-name">GPT-4o</span>
+                </div>
+                <div class="stage-details">
+                    <strong>What's happening:</strong> Identifying consensus, ranking issues, detecting disagreements, creating action checklist
+                </div>
+                <div class="stage-example">
+                    <strong>Output sections:</strong>
+                    <ul>
+                        <li>Consensus Snapshot</li>
+                        <li>Major Issues (ranked)</li>
+                        <li>Minor Issues</li>
+                        <li>Disagreements</li>
+                        <li>Author Action Checklist</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage-item" id="stage-validate" data-stage="validate">
+            <div class="stage-icon">
+                <span class="icon-pending">⏳</span>
+                <span class="icon-active" style="display: none;">🔄</span>
+                <span class="icon-complete" style="display: none;">✅</span>
+            </div>
+            <div class="stage-content">
+                <h3>Stage 4: Validate Quality</h3>
+                <p>Checking evidence coverage and brief completeness</p>
+                <div class="ai-model-badge">
+                    <span class="model-icon">🤖</span>
+                    <span class="model-name">GPT-4o-mini</span>
+                </div>
+                <div class="stage-details">
+                    <strong>What's happening:</strong> Verifying evidence citations, checking for hallucinations, scoring confidence
+                </div>
+                <div class="stage-example">
+                    <strong>Quality checks:</strong>
+                    <ul>
+                        <li>Evidence coverage ≥95%</li>
+                        <li>No unsupported claims</li>
+                        <li>Disagreements explicitly noted</li>
+                        <li>Action items testable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Realtime Stats -->
+    <div class="realtime-stats">
+        <h2>Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-value" id="stat-reviews">-</div>
+                <div class="stat-label">Reviews Processed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="stat-issues">-</div>
+                <div class="stat-label">Issues Extracted</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="stat-briefs">-</div>
+                <div class="stat-label">Briefs Generated</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="stat-time">0s</div>
+                <div class="stat-label">Elapsed Time</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Display (hidden initially) -->
+    <div id="error-display" class="error-display" style="display: none;">
+        <h3>⚠️ Error Occurred</h3>
+        <div id="error-message"></div>
+        <div class="navigation-buttons" style="margin-top: 20px;">
+            <button class="btn btn-secondary" onclick="window.location.href='/pipeline-config'">← Back to Configuration</button>
+            <button class="btn btn-secondary" onclick="window.location.href='/data-selection'">Change Dataset</button>
+        </div>
+    </div>
+
+    <!-- Success Actions -->
+    <div id="success-actions" class="success-actions" style="display: none;">
+        <h2>✅ Processing Complete!</h2>
+        <p id="success-message"></p>
+        <div class="action-buttons">
+            <a href="/results" class="btn btn-primary btn-large">View Results →</a>
+            <button class="btn btn-secondary" onclick="window.location.href='/data-selection'">Process Another</button>
+        </div>
+    </div>
+</div>
+
+<script>
+let startTime = Date.now();
+let statusCheckInterval = null;
+
+// Start processing on page load
+window.addEventListener('load', function() {
+    const runId = sessionStorage.getItem('selectedRunId');
+    if (!runId) {
+        alert('No dataset selected');
+        window.location.href = '/data-selection';
+        return;
+    }
+
+    startProcessing(runId);
+});
+
+function startProcessing(runId) {
+    // Start pipeline
+    fetch('/api/run-pipeline', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ run_id: runId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Pipeline started:', data);
+        // Start polling for status
+        statusCheckInterval = setInterval(checkStatus, 1000);
+    })
+    .catch(error => {
+        showError('Failed to start pipeline: ' + error);
+    });
+}
+
+function checkStatus() {
+    fetch('/api/pipeline-status')
+        .then(response => response.json())
+        .then(status => {
+            updateUI(status);
+
+            if (status.stage === 'complete') {
+                clearInterval(statusCheckInterval);
+                showSuccess(status);
+            } else if (status.stage === 'error') {
+                clearInterval(statusCheckInterval);
+                showError(status.error);
+            }
+        });
+}
+
+function updateUI(status) {
+    // Update progress bar
+    document.getElementById('overall-progress').style.width = status.progress + '%';
+    document.getElementById('progress-percentage').textContent = status.progress + '%';
+    document.getElementById('progress-message').textContent = status.message;
+
+    // Update elapsed time
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    document.getElementById('stat-time').textContent = elapsed + 's';
+
+    // Update stage indicators
+    const currentStage = status.stage;
+    document.querySelectorAll('.stage-item').forEach(item => {
+        const stageId = item.getAttribute('data-stage');
+        const pending = item.querySelector('.icon-pending');
+        const active = item.querySelector('.icon-active');
+        const complete = item.querySelector('.icon-complete');
+
+        if (stageId === currentStage) {
+            // Active stage
+            item.classList.add('active');
+            item.classList.remove('completed');
+            pending.style.display = 'none';
+            active.style.display = 'inline';
+            complete.style.display = 'none';
+        } else if (shouldBeCompleted(stageId, currentStage)) {
+            // Completed stage
+            item.classList.remove('active');
+            item.classList.add('completed');
+            pending.style.display = 'none';
+            active.style.display = 'none';
+            complete.style.display = 'inline';
+        } else {
+            // Pending stage
+            item.classList.remove('active', 'completed');
+            pending.style.display = 'inline';
+            active.style.display = 'none';
+            complete.style.display = 'none';
+        }
+    });
+
+    // Update stats if available
+    if (status.results) {
+        document.getElementById('stat-briefs').textContent = status.results.briefs_generated || '-';
+    }
+}
+
+function shouldBeCompleted(stageId, currentStage) {
+    const stages = ['prepare', 'extract', 'synthesize', 'validate', 'complete'];
+    const stageIndex = stages.indexOf(stageId);
+    const currentIndex = stages.indexOf(currentStage);
+    return stageIndex < currentIndex;
+}
+
+function showSuccess(status) {
+    document.getElementById('success-message').textContent = status.message;
+    document.getElementById('success-actions').style.display = 'block';
+
+    // Update final stats
+    if (status.results) {
+        document.getElementById('stat-briefs').textContent = status.results.briefs_generated;
+    }
+}
+
+function showError(message) {
+    document.getElementById('error-message').textContent = message;
+    document.getElementById('error-display').style.display = 'block';
+}
+</script>
+{% endblock %}

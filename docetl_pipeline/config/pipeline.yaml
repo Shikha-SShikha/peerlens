@@ -1,0 +1,341 @@
+# DocETL Pipeline for Peer Review Synthesis
+#
+# This pipeline processes multiple peer reviews and synthesizes them into
+# a structured editorial brief following the opportunity assessment design.
+#
+# Pipeline Steps:
+#   A. Map - Extract structured issues from each review
+#   B. Resolve - Canonicalize similar issues across reviews
+#   C. Reduce - Synthesize consensus, disagreements, and action items
+#   D. Validate - Apply quality gates and evidence checking
+
+default_model: gpt-4o-mini
+
+datasets:
+  reviews:
+    type: file
+    path: "input/reviews.json"
+    source: local
+
+  manuscripts:
+    type: file
+    path: "input/manuscripts.json"
+    source: local
+
+operations:
+  # ============================================================================
+  # STEP A: MAP - Extract structured issues from each review
+  # ============================================================================
+
+  - name: extract_review_issues
+    type: map
+    optimize: true
+    prompt: |
+      You are analyzing a peer review for a scientific manuscript.
+
+      Manuscript Title: {{ input.manuscript_title }}
+
+      Review Text:
+      {{ input.review_text }}
+
+      Your task is to extract ALL issues, concerns, and recommendations mentioned by the reviewer.
+      For EACH issue you identify:
+      1. Extract the exact text excerpt that describes the issue (quote directly from review)
+      2. Classify the issue as MAJOR or MINOR
+      3. Categorize it (e.g., methodology, statistics, clarity, ethics, data, interpretation)
+      4. Determine if it's actionable (can authors address it?)
+      5. Provide a brief normalized description
+
+      CRITICAL: Every issue MUST include the exact excerpt from the review text as evidence.
+      Do not invent or paraphrase - quote directly.
+
+      If the review is very brief or just says "approved", extract any implicit feedback or note "No specific issues raised - general approval"
+
+      Extract all issues as a structured list.
+    output:
+      schema:
+        issues:
+          type: list
+          elements:
+            type: dict
+            schema:
+              excerpt: string  # Exact quote from review
+              severity: "string (enum: MAJOR, MINOR)"
+              category: "string (one of: methodology, statistics, clarity, data, interpretation, ethics, reproducibility, writing, figures, references, other)"
+              actionable: boolean
+              description: string  # Brief normalized description
+        reviewer_recommendation: "string (optional)"
+        has_substantive_feedback: boolean
+    model: gpt-4o
+
+  # ============================================================================
+  # Add manuscript context to extracted issues
+  # ============================================================================
+
+  - name: flatten_issues
+    type: unnest
+    unnest_key: issues
+    keep_empty: true  # Keep reviews with no issues
+
+  # ============================================================================
+  # STEP B: RESOLVE - Canonicalize similar issues across reviews
+  # ============================================================================
+
+  - name: deduplicate_issues
+    type: resolve
+    optimize: true
+    blocking_keys:
+      - manuscript_id
+      - category
+    comparison_prompt: |
+      Compare these two issues from different reviewers for the same manuscript:
+
+      Issue 1 ({{ input1.category }}):
+      Description: {{ input1.description }}
+      Excerpt: "{{ input1.excerpt }}"
+      Severity: {{ input1.severity }}
+
+      Issue 2 ({{ input2.category }}):
+      Description: {{ input2.description }}
+      Excerpt: "{{ input2.excerpt }}"
+      Severity: {{ input2.severity }}
+
+      Are these describing the SAME underlying issue/concern?
+
+      Consider them the same if they refer to:
+      - The same methodological problem
+      - The same data analysis issue
+      - The same interpretation concern
+      - The same missing element or gap
+
+      Even if worded differently, they should be merged if addressing the same root concern.
+    resolution_prompt: |
+      These issues have been identified as referring to the same concern:
+
+      {% for issue in inputs %}
+      Reviewer {{ loop.index }}:
+      - Category: {{ issue.category }}
+      - Description: {{ issue.description }}
+      - Excerpt: "{{ issue.excerpt }}"
+      - Severity: {{ issue.severity }}
+      - Actionable: {{ issue.actionable }}
+
+      {% endfor %}
+
+      Create a unified issue record that:
+      1. Combines the descriptions into a single coherent description
+      2. Preserves ALL excerpts (don't lose evidence!)
+      3. Uses the highest severity mentioned
+      4. Lists which reviewers raised this issue
+      5. Maintains the category
+
+      The unified issue should capture the consensus concern while preserving traceability.
+    output:
+      schema:
+        canonical_description: string
+        category: string
+        severity: string
+        actionable: boolean
+        excerpts:
+          type: list
+          elements:
+            type: dict
+            schema:
+              reviewer_id: string
+              reviewer_name: string
+              excerpt: string
+        num_reviewers_flagged: integer
+    model: gpt-4o
+    embedding_model: text-embedding-3-small
+
+  # ============================================================================
+  # STEP C: REDUCE - Synthesize per manuscript
+  # ============================================================================
+
+  - name: synthesize_manuscript
+    type: reduce
+    reduce_key: manuscript_id
+    optimize: true
+    prompt: |
+      You are synthesizing multiple peer reviews into an Editorial Synthesis Brief.
+
+      Manuscript: {{ reduce_key }}
+      Title: {{ inputs[0].manuscript_title }}
+
+      You have received {{ inputs|length }} reviews with the following canonical issues:
+
+      {% for issue in inputs %}
+      {% if issue.canonical_description %}
+      [{{ issue.severity }}] {{ issue.category }}: {{ issue.canonical_description }}
+      - Flagged by {{ issue.num_reviewers_flagged }} reviewer(s)
+      - Evidence excerpts:
+      {% for exc in issue.excerpts %}
+        * Reviewer {{ exc.reviewer_id }}: "{{ exc.excerpt }}"
+      {% endfor %}
+
+      {% endif %}
+      {% endfor %}
+
+      Create a comprehensive Editorial Synthesis Brief with:
+
+      1. CONSENSUS SNAPSHOT
+         - What's the overall recommendation distribution?
+         - What's the confidence level (unanimous, majority, split)?
+         - Brief 2-3 sentence summary
+
+      2. MAJOR ISSUES (ranked by importance/severity)
+         - List each major issue
+         - Include: what it is, which reviewers raised it, actionability
+         - Provide evidence excerpts
+
+      3. MINOR ISSUES (ranked)
+         - List each minor issue
+         - Brief description with reviewer attribution
+
+      4. DISAGREEMENTS (if any)
+         - What do reviewers disagree about?
+         - Who says what?
+         - Recommended resolution path
+
+      5. AUTHOR ACTION CHECKLIST
+         - Concrete, testable actions grouped by category
+         - Map each action to the issues it addresses
+
+      6. OPEN QUESTIONS
+         - Things that need clarification from authors or reviewers
+
+      Be specific, evidence-based, and actionable. Do NOT make claims without evidence.
+    output:
+      schema:
+        manuscript_id: string
+        manuscript_title: string
+
+        consensus_snapshot:
+          type: dict
+          schema:
+            overall_recommendation: string
+            confidence: "string (enum: unanimous, strong_majority, majority, split, unclear)"
+            summary: string
+            num_reviews: integer
+
+        major_issues:
+          type: list
+          elements:
+            type: dict
+            schema:
+              rank: integer
+              category: string
+              issue: string
+              reviewers_flagged: list
+              actionable: boolean
+              evidence_excerpts: list
+
+        minor_issues:
+          type: list
+          elements:
+            type: dict
+            schema:
+              rank: integer
+              category: string
+              issue: string
+              reviewers_flagged: list
+
+        disagreements:
+          type: list
+          elements:
+            type: dict
+            schema:
+              topic: string
+              positions: list
+              reviewers_per_position: dict
+              impact: "string (enum: high, medium, low)"
+              resolution_recommendation: string
+
+        action_checklist:
+          type: list
+          elements:
+            type: dict
+            schema:
+              category: string
+              action: string
+              addresses_issues: list
+              testable: boolean
+
+        open_questions:
+          type: list
+          elements: string
+
+        traceability_index:
+          type: dict
+          # Maps issue_id -> [reviewer_ids] -> [excerpts]
+    model: gpt-4o
+
+  # ============================================================================
+  # STEP D: VALIDATE - Quality gates
+  # ============================================================================
+
+  - name: validate_synthesis
+    type: map
+    prompt: |
+      Validate this editorial synthesis brief for quality and traceability:
+
+      {% set brief = input %}
+
+      Brief for: {{ brief.manuscript_title }}
+      Major Issues: {{ brief.major_issues|length }}
+      Minor Issues: {{ brief.minor_issues|length }}
+
+      Check the following:
+
+      1. EVIDENCE REQUIREMENT: Does every major issue have supporting excerpt(s)?
+      2. NO HALLUCINATIONS: Are all claims traceable to reviewer excerpts?
+      3. COMPLETENESS: Are all major concerns likely captured?
+      4. DISAGREEMENTS: Are conflicts explicitly noted (not smoothed over)?
+      5. ACTIONABILITY: Is the action checklist specific and testable?
+
+      Provide validation results with:
+      - Overall pass/fail
+      - Specific issues found (if any)
+      - Confidence score (0-100)
+      - Warnings
+    output:
+      schema:
+        validation_passed: boolean
+        confidence_score: integer
+        issues_found: list
+        warnings: list
+        recommendations: list
+    model: gpt-4o-mini
+
+pipeline:
+  steps:
+    - name: extract_issues
+      input: reviews
+      operations:
+        - extract_review_issues
+        - flatten_issues
+
+    - name: resolve_issues
+      input: extract_issues
+      operations:
+        - deduplicate_issues
+
+    - name: synthesize_briefs
+      input: resolve_issues
+      operations:
+        - synthesize_manuscript
+
+    - name: validate_briefs
+      input: synthesize_briefs
+      operations:
+        - validate_synthesis
+
+  output:
+    type: file
+    path: "output/editorial_briefs.json"
+
+# Optimization configuration
+optimize:
+  enabled: true
+  # DocETL's optimizer will automatically improve the pipeline
+  # It may suggest adding gleaning operations, decomposing prompts, etc.

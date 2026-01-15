@@ -1,0 +1,138 @@
+# Simplified DocETL Pipeline for Peer Review Synthesis
+# Uses simpler schema formats compatible with DocETL
+
+default_model: gpt-4o-mini
+
+datasets:
+  reviews:
+    type: file
+    path: "input/reviews.json"
+    source: local
+
+operations:
+  # ============================================================================
+  # STEP A: MAP - Extract structured issues from each review
+  # ============================================================================
+
+  - name: extract_review_issues
+    type: map
+    optimize: true
+    prompt: |
+      You are analyzing a peer review for a scientific manuscript.
+
+      Manuscript Title: {{ input.manuscript_title }}
+      Review Text:
+      {{ input.review_text }}
+
+      Extract ALL issues, concerns, and recommendations from this review.
+
+      For each issue, provide:
+      1. excerpt: The exact text from the review (quote directly, don't paraphrase)
+      2. severity: Either "MAJOR" or "MINOR"
+      3. category: One of (methodology, statistics, clarity, data, interpretation, ethics, reproducibility, writing, figures, references, other)
+      4. actionable: true or false - can authors address this?
+      5. description: A brief normalized description (1-2 sentences)
+
+      Format your response as a JSON list of issues. If no specific issues, return empty list.
+
+      CRITICAL: Every issue MUST include an exact excerpt as evidence.
+    output:
+      schema:
+        issues_json: string
+        num_issues: integer
+    model: gpt-4o
+
+  # ============================================================================
+  # STEP C: REDUCE - Synthesize per manuscript (skipping resolve for now)
+  # ============================================================================
+
+  - name: synthesize_manuscript
+    type: reduce
+    reduce_key: manuscript_id
+    optimize: true
+    prompt: |
+      You are synthesizing {{ inputs|length }} peer reviews into an Editorial Synthesis Brief.
+
+      Manuscript: {{ reduce_key }}
+      Title: {{ inputs[0].manuscript_title }}
+
+      Reviews with extracted issues:
+      {% for review in inputs %}
+      Review {{ loop.index }} ({{ review.review_id }}):
+      - Number of issues: {{ review.num_issues }}
+      - Issues: {{ review.issues_json }}
+
+      {% endfor %}
+
+      Create a comprehensive Editorial Synthesis Brief with these sections:
+
+      1. CONSENSUS SNAPSHOT (2-3 sentences)
+      2. MAJOR ISSUES (list with evidence)
+      3. MINOR ISSUES (list)
+      4. DISAGREEMENTS (if any)
+      5. AUTHOR ACTION CHECKLIST (concrete actions)
+      6. OPEN QUESTIONS
+
+      Be specific and evidence-based. Include exact excerpts where possible.
+    output:
+      schema:
+        manuscript_id: string
+        manuscript_title: string
+        consensus_summary: string
+        major_issues: string
+        minor_issues: string
+        disagreements: string
+        action_checklist: string
+        open_questions: string
+        num_reviews_synthesized: integer
+    model: gpt-4o
+
+  # ============================================================================
+  # STEP D: VALIDATE - Quality check
+  # ============================================================================
+
+  - name: validate_synthesis
+    type: map
+    prompt: |
+      Validate this editorial synthesis brief:
+
+      Manuscript: {{ input.manuscript_title }}
+      Consensus: {{ input.consensus_summary }}
+      Major Issues: {{ input.major_issues }}
+
+      Check:
+      1. Are major issues supported by evidence?
+      2. Are disagreements explicitly noted?
+      3. Is the action checklist specific?
+
+      Provide:
+      - validation_passed: true/false
+      - confidence_score: 0-100
+      - issues_found: list of problems (or empty)
+    output:
+      schema:
+        validation_passed: boolean
+        confidence_score: integer
+        validation_notes: string
+    model: gpt-4o-mini
+
+pipeline:
+  steps:
+    - name: extract_issues
+      input: reviews
+      operations:
+        - extract_review_issues
+
+    - name: synthesize_briefs
+      input: extract_issues
+      operations:
+        - synthesize_manuscript
+
+    - name: validate_briefs
+      input: synthesize_briefs
+      operations:
+        - validate_synthesis
+
+  output:
+    type: file
+    path: "output/editorial_briefs.json"

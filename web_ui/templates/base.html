@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PeerLens - Transform Peer Reviews into Actionable Insights{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Progress Bar showing user journey -->
+    <div class="journey-progress">
+        <div class="container">
+            <div class="journey-steps">
+                <div class="step {% if active_step == 1 %}active{% elif active_step > 1 %}completed{% endif %}">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Select Data</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step {% if active_step == 2 %}active{% elif active_step > 2 %}completed{% endif %}">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Configure</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step {% if active_step == 3 %}active{% elif active_step > 3 %}completed{% endif %}">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Process</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step {% if active_step == 4 %}active{% elif active_step > 4 %}completed{% endif %}">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Results</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <h1 class="logo">
+                <a href="/">🔬 PeerLens</a>
+            </h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/data-selection">New Synthesis</a>
+                <a href="/results">View Results</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <p class="footer-text">PeerLens | Powered by DocETL</p>
+                </div>
+                <div class="footer-section">
+                    <div class="ai-transparency">
+                        <span class="ai-badge">🤖 AI-Powered</span>
+                        <span class="model-info">GPT-4o • GPT-4o-mini</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

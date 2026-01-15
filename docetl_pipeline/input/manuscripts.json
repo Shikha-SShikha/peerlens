@@ -1,0 +1,49 @@
+[
+  {
+    "manuscript_id": "2-150",
+    "title": "A\u00a0fixed-dose\u00a0randomized controlled trial of olanzapine for psychosis in Parkinson disease",
+    "abstract": "Background:Psychosis is a common and debilitating side effect of long-term dopaminergic treatment of Parkinson disease (PD). While clozapine is an effective treatment, the need for blood monitoring has limited its first-line use.Objective:Since olanzapine shows similar receptor affinity to clozapine, we hypothesized that it might be an effective alternative to clozapine for treatment of drug-induced psychosis (DIP) in PD, and that lower doses than usual might make it tolerable.Methods:In 1998-2003 we conducted a four-week, double-blind, placebo-controlled, parallel group, fixed-dose trial of olanzapine (0, 2.5mg, or 5mg) in 23 PD patients with DIP while allowing for clinically realistic dose adjustments of dopaminomimetic mid-study. The primary outcome measures were Brief Psychiatric Rating Scale (BPRS) ratings scored from videotaped interviews after study termination by an observer blinded to dose assignment and to interview timing, and CGI (Clinical Global Impression). The Unified Parkinson\u2019s Disease Rating Scale motor subscale (UPDRS) was the primary measure of tolerability.Results:Intention-to-treat analysis found no significant differences among treatment groups in study completion or serious adverse events. However, a disproportionate number of olanzapine vs. placebo subjects reported mild side effects (p<0.04), many citing motor worsening. Fourteen patients completed the study (seven on placebo, two on 2.5mg olanzapine, five on 5mg olanzapine). In study completers, analysis by repeated measures ANOVA revealed no significant difference between olanzapine and placebo groups in BPRS psychosis reduction (p=0.536), parkinsonism (p=0.608), or any other measured parameters (CGI, MMSE, Beck Depression Inventory, Hamilton Depression score, PDQ\u201139, Schwab-England ADL assessment, and sleep scores).Conclusion:This study adds to other evidence that olanzapine is ineffective in treating medication-induced psychosis in Parkinson disease.READ ALLREAD LESS",
+    "doi": "10.12688/f1000research.2-150.v1",
+    "authors": [
+      "Michelle J Nichols",
+      "Johanna M Hartlein",
+      "Meredith GA Eicken",
+      "Brad A Racette",
+      "Kevin J Black"
+    ],
+    "num_reviews": 19,
+    "source": "f1000research",
+    "source_url": "https://f1000research.com/articles/2-150"
+  },
+  {
+    "manuscript_id": "3-200",
+    "title": "High-Performance Mixed Models Based Genome-Wide Association Analysis with omicABEL software",
+    "abstract": "To raise the power of genome-wide association studies (GWAS) and avoid false-positive\u00a0results in structured populations, one can rely on mixed model based tests.\u00a0When large samples are used, and when multiple traits are to be studied in the\u00a0\u2019omics\u2019 context, this approach becomes computationally challenging.\u00a0Here we consider the problem of mixed-model based GWAS for arbitrary number\u00a0of traits, and demonstrate that for the analysis of single-trait and multiple-trait scenarios\u00a0different computational algorithms are optimal. We implement these optimal\u00a0algorithms in a high-performance computing framework that uses state-of-the-art\u00a0linear algebra kernels, incorporates optimizations, and avoids redundant computations,increasing throughput while reducing memory usage and energy consumption.\u00a0We show that, compared to existing libraries, our algorithms and software\u00a0achieve considerable speed-ups.\u00a0The OmicABEL software described in this manuscript is available under the GNUGPL v. 3 license as part of the GenABEL project for statistical genomics at http:\u00a0//www.genabel.org/packages/OmicABEL.READ ALLREAD LESS",
+    "doi": "10.12688/f1000research.4867.1",
+    "authors": [
+      "Diego Fabregat-Traver",
+      "Sodbo Zh. Sharapov",
+      "Caroline Hayward",
+      "Igor Rudan",
+      "Harry Campbell",
+      "Yurii Aulchenko",
+      "Paolo Bientinesi"
+    ],
+    "num_reviews": 24,
+    "source": "f1000research",
+    "source_url": "https://f1000research.com/articles/3-200"
+  },
+  {
+    "manuscript_id": "4-100",
+    "title": "Assessing the bipotency of in vitro-derived neuromesodermal progenitors",
+    "abstract": "Retrospective clonal analysis in the mouse has demonstrated that the posterior spinal cord neurectoderm and paraxial mesoderm share a common bipotent progenitor. These neuromesodermal progenitors (NMPs) are the source of new axial structures during embryonic rostrocaudal axis elongation and are marked by the simultaneous co-expression of the transcription factors T(Brachyury) (T(Bra)) and Sox2. NMP-like cells have recently been derived from pluripotent stem cellsin vitrofollowing combined stimulation of Wnt and fibroblast growth factor (FGF) signaling. Under these conditions the majority of cultures consist of T(Bra)/Sox2 co-expressing cells after 48-72 hours of differentiation. Although the capacity of these cells to generate posterior neural and paraxial mesoderm derivatives has been demonstrated at the population level, it is unknown whether a singlein vitro-derived NMP can give rise to both neural and mesodermal cells. Here we demonstrate that T(Bra) positive cells obtained from mouse epiblast stem cells (EpiSCs) after culture in NMP-inducing conditions can generate both neural and mesodermal clones. This finding suggests that, similar to their embryonic counterparts,in vitro-derived NMPs are truly bipotent and can thus be exploited as a model for studying the molecular basis of developmental cell fate decisions.READ ALLREAD LESS",
+    "doi": "10.12688/f1000research.6345.2",
+    "authors": [
+      "Anestis Tsakiridis",
+      "Valerie Wilson"
+    ],
+    "num_reviews": 33,
+    "source": "f1000research",
+    "source_url": "https://f1000research.com/articles/4-100"
+  }
+]

@@ -1,0 +1,495 @@
+================================================================================
+PEER REVIEW SYNTHESIS REPORT
+================================================================================
+
+Generated: 2026-01-14 18:05:59
+Total Briefs: 23
+Validated: 17
+
+================================================================================
+
+
+[1] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: bipotency_neuromesodermal_progenitors
+Reviews Synthesized: 2
+
+CONSENSUS:
+Both reviewers provided positive feedback, with no major or minor issues raised regarding the manuscript. The research on the bipotency of in vitro-derived neuromesodermal progenitors appears to be well-received without requests for significant revisions.
+
+MAJOR ISSUES:
+None reported.
+
+ACTION CHECKLIST:
+There are no required actions from the reviewers.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[2] High-Performance Mixed Models Based Genome-Wide Association Analysis with omicABEL software
+--------------------------------------------------------------------------------
+Manuscript ID: mixed_models_002
+Reviews Synthesized: Not found
+
+CONSENSUS:
+The manuscript presents a novel approach to using mixed models in genome-wide association analysis, utilizing the omicABEL software. The methodology appears robust, and the review does not highlight any significant concerns or issues, suggesting the manuscript is well-received.
+
+MAJOR ISSUES:
+None identified.
+
+ACTION CHECKLIST:
+No specific actions required, as no issues were noted in the review.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[3] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: 7383
+Reviews Synthesized: Not found
+
+CONSENSUS:
+Both reviewers have evaluated the manuscript and found no significant issues. This suggests a general agreement on the manuscript's quality and coherence, as both reviews reported zero critical points.
+
+MAJOR ISSUES:
+No major issues were identified by either reviewer.
+
+ACTION CHECKLIST:
+Since there are no identified issues, no specific actions are required from the authors at this time.
+
+VALIDATION: ✓ Passed
+Confidence: 90/100
+
+
+[4] A fixed-dose randomized controlled trial of olanzapine for psychosis in Parkinson disease
+--------------------------------------------------------------------------------
+Manuscript ID: A fixed-dose randomized controlled trial of olanzapine for psychosis in Parkinson disease
+Reviews Synthesized: 2
+
+CONSENSUS:
+Both reviewers found no issues with the manuscript, indicating a consensus that the study is well-conducted and the findings are clearly presented. This suggests the manuscript meets the publication standards and provides valuable insights into the use of olanzapine for psychosis in Parkinson's disease.
+
+MAJOR ISSUES:
+None identified by the reviewers.
+
+ACTION CHECKLIST:
+No specific actions required as no issues were noted by the reviewers.
+
+VALIDATION: ✓ Passed
+Confidence: 90/100
+
+
+[5] High-Performance Mixed Models Based Genome-Wide Association Analysis with omicABEL software
+--------------------------------------------------------------------------------
+Manuscript ID: high-performance-mixed-models
+Reviews Synthesized: 1
+
+CONSENSUS:
+The manuscript presents a thorough analysis of high-performance mixed models for genome-wide association studies using the omicABEL software. It appears to provide valuable insights that can enhance computational efficiency and accuracy in genomic data analysis.
+
+MAJOR ISSUES:
+There are no major issues reported in the review. The manuscript is deemed acceptable in its current form regarding major concerns.
+
+ACTION CHECKLIST:
+There are no specific actions required from the authors based on the review, as no issues were identified.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[6] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: manuscript-001
+Reviews Synthesized: 1
+
+CONSENSUS:
+Based on the available review, the study on the bipotency of in vitro-derived neuromesodermal progenitors seems to have been well-conducted, as there are no major or minor issues raised by the reviewer. The consensus indicates satisfaction with the manuscript content and methodology.
+
+MAJOR ISSUES:
+No major issues were identified by the reviewer in this manuscript.
+
+ACTION CHECKLIST:
+No specific actions are required from the authors as no issues were identified by the reviewer.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[7] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: 4-100/v1
+Reviews Synthesized: 2
+
+CONSENSUS:
+Both reviews have highlighted that there are no major or minor issues identified in the manuscript. The reviewers unanimously agree on the strength of the research and its experimental design without pointing out any particular concerns.
+
+MAJOR ISSUES:
+There are no major issues identified by the reviewers.
+
+ACTION CHECKLIST:
+As there are no issues highlighted by the reviewers, there are no specific actions recommended for the authors at this stage.
+
+VALIDATION: ✓ Passed
+Confidence: 90/100
+
+
+[8] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: Manuscript Title: Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+Reviews Synthesized: 1
+
+CONSENSUS:
+The reviewed manuscript focuses on evaluating the bipotency of neuromesodermal progenitors (NMPs) derived in vitro. The reviewer did not highlight any issues, suggesting a positive overall reception of the manuscript's content and findings.
+
+MAJOR ISSUES:
+None reported.
+
+ACTION CHECKLIST:
+No actions required as no issues were reported by the reviewer.
+
+VALIDATION: ✓ Passed
+Confidence: 90/100
+
+
+[9] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: generated_id
+Reviews Synthesized: Not found
+
+CONSENSUS:
+The review indicates no specific issues with the manuscript, suggesting that it is well-received and does not require major revisions. The study on the bipotency of in vitro-derived neuromesodermal progenitors seems to be well-conducted, and the reviewer has not highlighted any critical concerns or discrepancies.
+
+MAJOR ISSUES:
+None were identified by the reviewer.
+
+ACTION CHECKLIST:
+No specific actions are required as the reviewer did not identify any issues. The authors should proceed with confidence to the next steps of the publication process.
+
+VALIDATION: ✓ Passed
+Confidence: 95/100
+
+
+[10] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: in vitro-derived neuromesodermal progenitors
+Reviews Synthesized: 2
+
+CONSENSUS:
+The reviews of the manuscript 'Assessing the bipotency of in vitro-derived neuromesodermal progenitors' indicate a positive reception with no identified issues. The reviewers seem to agree on the quality and scientific merit of the study.
+
+MAJOR ISSUES:
+None identified in either of the reviews.
+
+ACTION CHECKLIST:
+Since there are no issues identified in the reviews, no specific actions are required from the authors at this time.
+
+VALIDATION: ✗ Failed
+Confidence: 60/100
+
+
+[11] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: in-vitro-neo-prog
+Reviews Synthesized: 1
+
+CONSENSUS:
+The manuscript 'Assessing the bipotency of in vitro-derived neuromesodermal progenitors' was generally found to be sound by the reviewer, who raised no specific issues. This indicates a positive reception regarding the overall scientific framework and execution.
+
+MAJOR ISSUES:
+There were no major issues identified in the review provided.
+
+ACTION CHECKLIST:
+As there were no issues identified, no specific actions are required by the authors based on the review presented.
+
+VALIDATION: ✓ Passed
+Confidence: 90/100
+
+
+[12] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: NMP-2023-001
+Reviews Synthesized: 1
+
+CONSENSUS:
+The manuscript titled 'Assessing the bipotency of in vitro-derived neuromesodermal progenitors' has been reviewed by one peer and received no identified issues. This suggests a general consensus of the manuscript's quality and acceptance in its current form, focusing on the exploration of bipotent progenitors derived in vitro with potential implications for understanding cellular pathways.
+
+MAJOR ISSUES:
+None identified in the review.
+
+ACTION CHECKLIST:
+No specific actions required as no issues were raised in the review.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[13] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: 100
+Reviews Synthesized: Not found
+
+CONSENSUS:
+The review indicates a general satisfaction with the manuscript. No specific issues were raised, suggesting an overall positive reception of the methodology and conclusions presented in the study on neuromesodermal progenitors.
+
+MAJOR ISSUES:
+None identified. The review did not highlight any significant concerns with the manuscript.
+
+ACTION CHECKLIST:
+No specific actions are recommended for the authors, as there were no issues or concerns raised in the review.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[14] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: M01
+Reviews Synthesized: Not found
+
+CONSENSUS:
+The manuscript titled 'Assessing the bipotency of in vitro-derived neuromesodermal progenitors' has undergone peer review. The single review available did not highlight any specific issues, suggesting that the reviewer did not find any major or minor concerns with the study. This indicates a generally positive reception towards the manuscript from the reviewer.
+
+MAJOR ISSUES:
+There are no major issues identified in the review provided for this manuscript.
+
+ACTION CHECKLIST:
+Since no issues were identified in the review, there are no specific actions required for addressing concerns.
+
+VALIDATION: ✓ Passed
+Confidence: 95/100
+
+
+[15] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: 4-100
+Reviews Synthesized: Not found
+
+CONSENSUS:
+The manuscript explores the bipotency of neuromesodermal progenitors derived in vitro. While the study's methodology appears sound, there are areas where additional data and methodological adjustments could enhance the validity and merit of the findings.
+
+MAJOR ISSUES:
+The study lacks data from a missing experiment that would provide insights into differences in clonal types, which would enhance the study's merit. (Evidence: '3. (g) Data of the missing experiment would have enhanced the merit of this study on the differences in clonal types.')
+
+ACTION CHECKLIST:
+1. Conduct the missing experiment to gather data on the differences in clonal types.
+2. Perform the expression analysis using different fluorescent reporters to validate initial findings.
+
+VALIDATION: ✗ Failed
+Confidence: 70/100
+
+
+[16] High-Performance Mixed Models Based Genome-Wide Association Analysis with omicABEL software
+--------------------------------------------------------------------------------
+Manuscript ID: 3:200
+Reviews Synthesized: 1
+
+CONSENSUS:
+The manuscript presents a comparison of genome-wide association analysis methods implemented via the omicABEL software, emphasizing computational efficiency. However, critical issues were identified in areas such as methodological robustness and clarity of presentation.
+
+MAJOR ISSUES:
+1. The authors need to systematically compare their approaches in terms of type I error and accuracy of estimates. (Excerpt: 'Accuracy of estimates and comparison of results. The authors make a big deal about comparing the approaches in terms of computing time. They should also be compared systematically in terms of type I error, accuracy of estimates etc.')
+2. The authors should provide more details about the simulation setup, including family structures and complexity. (Excerpt: 'We need more detail about the simulations. You simulate different population sizes but you must clarify the family structures and the family complexity.')
+3. Variables should be defined before use, and tables should be self-contained with explanations for all acronyms and variables. (Excerpt: 'In many places, variables are used before they are defined. p appears in Table 1 but is only clarified later in the text.')
+
+ACTION CHECKLIST:
+1. Conduct a systematic comparison of approaches concerning type I error and accuracy.
+2. Provide detailed descriptions of simulation setups, particularly focusing on family structures and complexity.
+3. Define all variables prior to their use and ensure all tables are self-contained with understandable explanations.
+4. Refine mathematical notation and language for better clarity.
+5. Reorganize content to appropriately categorize results and methodologies.
+6. Update Figure 3C and 3D with suggested changes.
+7. Revise unclear table abbreviations in Table S3 for clarity.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[17] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: Tx6520
+Reviews Synthesized: 1
+
+CONSENSUS:
+The manuscript provides an investigation into the characteristics of neuromesodermal progenitors and raises some intriguing observations, particularly regarding the discrepancies in clonal analysis and gene expression patterns. Overall, the findings contribute to our understanding of in vitro progenitor differentiation, though several methodological and figure presentation issues need to be addressed for clarity and consistency.
+
+MAJOR ISSUES:
+1. Inconsistency between the number of cells shown in T+ clones in Fig 3C (at least 9 cells) and those reported in Fig 3D (majority with 2 and 4 cells) and Fig 3E. Evidence: "Data shown in Fig 3D indicates that T+ clones contain 2 and 4 cells... The example of T+ve clone shown in Fig 3C contains at least 9 cells."
+
+ACTION CHECKLIST:
+1. Address the inconsistency in Fig 3C-E regarding clonal cell counts.
+2. Enhance figures 1 and 2 to improve resolution for gene co-expression visualization.
+3. Implement a consistent color scheme throughout the manuscript figures.
+4. Discuss potential paracrine influences on Tbx6 differentiation.
+5. Ensure that immunofluorescence signals for Sox2 and Tbx6 are captured independently from T-GFP.
+6. Clarify the representation discrepancies in Fig 3C.
+7. Provide justification for culture methodology choices relative to experimental group differences.
+
+VALIDATION: ✗ Failed
+Confidence: 85/100
+
+
+[18] High-Performance Mixed Models Based Genome-Wide Association Analysis with omicABEL software
+--------------------------------------------------------------------------------
+Manuscript ID: High-Performance Mixed Models Based Genome-Wide Association Analysis with omicABEL software
+Reviews Synthesized: 21
+
+CONSENSUS:
+Out of the 21 reviews examined, the majority did not identify any significant issues, suggesting a general consensus that the manuscript is well-constructed. However, one review highlighted several issues requiring attention for improved accuracy and clarity in the scientific methods and presentation of results.
+
+MAJOR ISSUES:
+1. The manuscript lacks systematic comparisons in terms of type I error and accuracy of estimates to assess the cost of computational approximations (Reviewer 13).
+2. The simulation setup needs more detailed information, including aspects like family structures, generations, marker data simulation, and correlation structures among traits (Reviewer 13).
+3. Variables are often used before being defined, and tables are not self-explanatory, leading to potential misunderstandings (Reviewer 13).
+
+ACTION CHECKLIST:
+1. Incorporate systematic comparisons in the manuscript regarding type I error and accuracy of estimates.
+2. Provide detailed information on the simulation setup, addressing the aspects pointed out in the major issues.
+3. Ensure that all variables are defined before use and make tables self-explanatory.
+4. Improve the mathematical notation and general language clarity.
+5. Reorganize the manuscript to place certain results in the Materials and Methods section.
+6. Adjust Figure 3C and 3D according to the minor issues.
+7. Clarify or reconsider Table S3 to enhance its value.
+8. Ensure citations include information in brackets following the title.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[19] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+Reviews Synthesized: 12
+
+CONSENSUS:
+The manuscript presents an analysis of in vitro-derived neuromesodermal progenitors with a focus on their bipotent characteristics. While the study is well-received for its scientific contribution, there are notable methodological concerns and a need for additional data to bolster the findings.
+
+MAJOR ISSUES:
+1. The use of the ROCK inhibitor Y-27632 in cell sorting and plating is not well-justified. Reviewers request clarification on its inclusion and impact (Reviews 4 & 5).
+2. Differentiation protocols should include parallel neural and mesodermal differentiation using distinct methods to enhance experimental design integrity (Reviews 4 & 5).
+3. Co-expression verification of T-GFP positive cells with Sox2 at plating is essential to establish initial cell conditions (Reviews 4 & 5).
+4. The negative control in Fig3B requires improvement to ensure experimental accuracy (Reviews 4 & 5).
+5. Investigating the influence of clone size on lineage identity is necessary to understand variations in cell type expression (Reviews 4 & 5).
+6. Additional marker analysis to confirm T(Bra)/Sox2 double negative colonies in figure 3D and E is recommended (Reviews 4 & 5).
+
+ACTION CHECKLIST:
+1. Provide a rationale and discussion on the usage of ROCK inhibitor Y-27632 in the methodology.
+2. Consider conducting parallel differentiation experiments with distinct protocols for neural and mesodermal lineages.
+3. Demonstrate Sox2 co-expression in T-GFP positive cells at the point of plating using immuno-cytochemistry if necessary.
+4. Improve the negative control setup in Figure 3B to better reflect undifferentiated EpiSCs.
+5. Investigate and report on the potential effects of clone size variation on lineage identity.
+6. Analyze additional neural and mesodermal markers for figure 3D and E to validate findings.
+7. Address inconsistency in coexpression rates reported in literature.
+8. Correct typing errors in figure legends and clarify them for better understanding.
+9. Ensure adherence to citation formatting guidelines by including all necessary information.
+
+VALIDATION: ✗ Failed
+Confidence: 85/100
+
+
+[20] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: NMP_Bipotency_2023
+Reviews Synthesized: 1
+
+CONSENSUS:
+The review of the manuscript highlights a need for clearer methodology and stronger evidence to support findings. Major concerns involve the use of specific protocols and clarity on expression markers. There are also smaller issues related to data presentation and minor clarifications.
+
+MAJOR ISSUES:
+1. Clarification on the use of ROCK inhibitor Y-27632 is needed. ("The authors should comment on the use of the ROCK inhibitor Y-27632 in their protocol for cell sorting and during subsequent plating at low density.")
+2. Reasons for not performing parallel neural and mesodermal differentiation protocols should be explained. ("Why did the authors not perform neural and mesodermal differentiation in parallel using two distinct protocols?")
+3. Evidence that T-GFP positive cells are Sox2 co-expressing at plating should be provided, possibly using immuno-cytochemistry. ("It would be reassuring here if the authors had demonstrated that sorted individual T-GFP +ve cells were also Sox2 co-expressing at the time of plating – even if this required immuno-cytochemistry.")
+4. Inclusion of T(Bra)-GFP undifferentiated EpiSCs as a negative control is recommended. ("A good negative control would be to analyse T(Bra)-GFP undifferentiated EpiSCs as they will have the same genetic background as the NMPs analyzed later but won’t express T(Bra).")
+5. Investigate T(Bra)/Sox2 double negative colonies using other neural and mesodermal markers like Pax6 or Sox1 and Paraxis. ("The authors should address this by looking at other neural and mesodermal markers, such as Pax6 or Sox1 and Paraxis.")
+
+ACTION CHECKLIST:
+1. Provide a detailed explanation of the use of ROCK inhibitor Y-27632 in the methodology section.
+2. Include rationale for not doing parallel differentiation protocols in the discussion.
+3. Add immuno-cytochemistry data showing T-GFP positive cells are also Sox2 co-expressing at plating.
+4. Include a negative control using T(Bra)-GFP undifferentiated EpiSCs.
+5. Test T(Bra)/Sox2 double negative colonies with additional markers like Pax6, Sox1, and Paraxis.
+6. Analyze cell lineage identity considering clone size in the results section.
+7. Comment on coexpression rate discrepancies found with FGF2/CHIR protocol.
+8. Correct texts errors in Figure legends.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100
+
+
+[21] A fixed-dose randomized controlled trial of olanzapine for psychosis in Parkinson disease
+--------------------------------------------------------------------------------
+Manuscript ID: A fixed-dose randomized controlled trial of olanzapine for psychosis in Parkinson disease
+Reviews Synthesized: Not found
+
+CONSENSUS:
+The manuscript under review tests olanzapine for treating psychosis in Parkinson's Disease (PD). While the study provides insight into the potential motor side effects of olanzapine, there are substantial concerns regarding its methodology, interpretation of results, and efficacy claims, which suggest the study's conclusions might be limited or skewed.
+
+MAJOR ISSUES:
+- Methodological Concerns: The study's allowance for changes in dopaminergic medication introduces potential confounding factors that could skew results. (Review 2, 3, 8, 9)
+- Interpretation Flaws: There is an incorrect assumption that olanzapine's receptor profile is similar to clozapine, which is contested in recent references. The manuscript suggests that delusions precede hallucinations, which reviewers disagree with. (Review 2, 3, 9, 14)
+- Study Design Issues: Unplanned changes, including dosage adjustments after study initiation, led to the exclusion of subjects and affected the study's validity and power due to high dropout rates. (Review 8, 9)
+
+ACTION CHECKLIST:
+- Reassess and articulate the allowance for dopaminergic dose adjustments in the method section, addressing the potential impact on study results.
+- Provide updated references on the comparative receptor profiles of antipsychotic drugs and clarify interpretations based on these sources.
+- Clearly articulate the limitations imposed by unplanned changes and high dropout rates on study conclusions and efficacy claims.
+- Correctly place the square brackets information in citations to ensure consistency.
+- Explain the context and implications of 'Type II error' more clearly in the discussion.
+
+VALIDATION: ✗ Failed
+Confidence: 70/100
+
+
+[22] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: assessing_bipotency_nmp
+Reviews Synthesized: 1
+
+CONSENSUS:
+The manuscript provides an insightful analysis of the bipotency of in vitro-derived neuromesodermal progenitors, though several issues related to data consistency and methodological clarity have been highlighted. Addressing these issues will significantly strengthen the findings and conclusions presented.
+
+MAJOR ISSUES:
+1. Data Inconsistency: There is a discrepancy in the data regarding the number of cells in T+ clones, as shown in Fig 3D compared to Fig 3C. It raises questions about whether all subsets of clones were consistently scored. 
+2. Image Quality: The resolution issues in Figures 1 and 2 make it hard to discern T-GFP and Sox2 co-expression in individual cells.
+3. Inconsistent Color Schemes: Fluorescence images use varying color schemes across figures, confusing the interpretation of results. 
+4. Methodological Concerns: Potential confounding in fluorescence imaging due to GFP background, especially concerning Sox2 and Tbx6 marker detection. 
+5. Data Mismatch: A highlighted clone in the bottom panel of Fig 3C lacks expected T+/Sox2+ cells, inconsistent with the figure legends.
+6. Methodology Clarification: Differences between clonal types at various sorting stages need elucidation, specifically regarding "Sorted at D2-IF at D4" versus "Sorted at D3-IF at Day 5 FGF2/CHIR".
+
+ACTION CHECKLIST:
+1. Ensure consistency in the data presented between figures, particularly regarding T+ clone cell numbers.
+2. Improve image resolution in Figures 1 and 2 for clearer marker expression interpretation.
+3. Standardize color schemes across all figures for fluorescence imagery.
+4. Address potential confounding in fluorescent imaging methods concerning Sox2 and Tbx6.
+5. Provide clarification and correct mismatches in figure legends, notably in Fig 3C.
+6. Expound on differences between clonal types at various sorting stages and clarify the rationale for experimental choices.
+
+VALIDATION: ✗ Failed
+Confidence: 80/100
+
+
+[23] Assessing the bipotency of in vitro-derived neuromesodermal progenitors
+--------------------------------------------------------------------------------
+Manuscript ID: 6803
+Reviews Synthesized: Not found
+
+CONSENSUS:
+The manuscript assesses the bipotency of in vitro-derived neuromesodermal progenitors with particular focus on experimental data interpretation and image resolution complications. Reviewer 1 identified numerous issues requiring clarification, particularly related to experimental data consistency and image quality. Reviewer 2 did not highlight any issues, indicating either satisfaction with the content or less scrutiny.
+
+MAJOR ISSUES:
+1. Inconsistency in experimental data: The discrepancy in the number of cells in T+ clones between Fig 3C and the dataset of Fig 3D/3E indicates potential oversight [Excerpt: "Inconsistency of experimental data Data shown in Fig 3D indicates..."]. 
+2. Image quality concerns: The resolution in Figures 1 and 2 is inadequate for determining marker co-expression [Excerpt: "Quality of the image data a. It is difficult to discern the co-expression..."]. 
+3. Potential signal confounding: The fluorescence results for Sox2 and Tbx6 markers may be confounded by the T-GFP background [Excerpt: "Additional data / information may help: d. Were the Sox2 and Tbx6 immunofluorescence signals captured..."].
+4. Discrepancy in clone description: There is an issue in the clone description in Fig 3C, where T+/Sox2+ cells are missing [Excerpt: "The bottom panel of Fig 3C: The "T + /Sox2 + mixed with T - /Sox2 -" clone showed no T + /Sox2 + cells..."].
+
+ACTION CHECKLIST:
+1. Address the data inconsistency in Figures 3C, 3D, and 3E, ensuring all relevant data is included and accurate.
+2. Improve image resolution in Figures 1 and 2 to clarify marker co-expression.
+3. Standardize the color schemes used in fluorescence data across all figures.
+4. Clarify the lineage relationship of Tbx6+ cells to mesoderm progenitors, and provide evidence for T-/Sox2- cells being differentiated NMP derivatives.
+5. Investigate the potential for confounding fluorescence signals due to T-GFP background.
+6. Explain the experimental design, particularly the rationale behind different sorting and culture protocols.
+
+VALIDATION: ✓ Passed
+Confidence: 85/100

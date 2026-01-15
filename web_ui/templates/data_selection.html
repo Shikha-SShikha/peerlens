@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Select Data - PeerLens{% endblock %}
+
+{% set active_step = 1 %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Step 1: Select Review Data</h1>
+    <p>Choose from collected datasets or upload your own peer reviews</p>
+</div>
+
+<div class="data-selection-container">
+    <div class="selection-option active">
+        <h2>📁 Use Collected Data</h2>
+        <p>Select from previously collected peer review datasets</p>
+
+        {% if runs %}
+        <div class="dataset-list">
+            {% for run in runs %}
+            <div class="dataset-card" data-run-id="{{ run.id }}">
+                <div class="dataset-header">
+                    <h3>{{ run.id }}</h3>
+                    <span class="dataset-date">{{ run.date[:8] | replace('_', '-') }}</span>
+                </div>
+                <div class="dataset-stats">
+                    <div class="stat">
+                        <span class="stat-value">{{ run.manuscripts }}</span>
+                        <span class="stat-label">Manuscripts</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">{{ run.reviews }}</span>
+                        <span class="stat-label">Reviews</span>
+                    </div>
+                </div>
+                <div class="dataset-source">
+                    <span>Source: F1000Research, eLife</span>
+                </div>
+                <button class="btn btn-primary select-dataset" data-run-id="{{ run.id }}">
+                    Select This Dataset
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <p>No collected datasets found.</p>
+            <p>Run the data collection script first:</p>
+            <pre>cd data_collection && python collect_reviews.py</pre>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="selection-option">
+        <h2>📤 Upload Custom Data</h2>
+        <p>Upload your own peer review data in JSON format</p>
+
+        <div class="upload-area">
+            <form id="upload-form" enctype="multipart/form-data">
+                <div class="upload-dropzone">
+                    <div class="upload-icon">📄</div>
+                    <p>Drag and drop JSON file here</p>
+                    <p class="upload-subtext">or</p>
+                    <label for="file-input" class="btn btn-secondary">Browse Files</label>
+                    <input type="file" id="file-input" name="file" accept=".json" style="display: none;">
+                </div>
+                <div class="upload-requirements">
+                    <strong>Format Requirements:</strong>
+                    <ul>
+                        <li>JSON array of review objects</li>
+                        <li>Required fields: manuscript_id, review_text, manuscript_title</li>
+                        <li>Max file size: 16MB</li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="navigation-buttons">
+    <a href="/" class="btn btn-secondary">← Back</a>
+    <button id="continue-btn" class="btn btn-primary" disabled>Continue to Configuration →</button>
+</div>
+
+<!-- Selected Dataset Info (hidden initially) -->
+<div id="selected-info" class="selected-info" style="display: none;">
+    <h3>Selected Dataset</h3>
+    <div id="selected-details"></div>
+</div>
+
+<script>
+let selectedRunId = null;
+
+// Handle dataset selection
+document.querySelectorAll('.select-dataset').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const runId = this.getAttribute('data-run-id');
+        selectedRunId = runId;
+
+        // Visual feedback
+        document.querySelectorAll('.dataset-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        this.closest('.dataset-card').classList.add('selected');
+
+        // Show selected info
+        document.getElementById('selected-info').style.display = 'block';
+        document.getElementById('selected-details').innerHTML = `
+            <strong>Dataset:</strong> ${runId}<br>
+            Ready to process
+        `;
+
+        // Enable continue button
+        document.getElementById('continue-btn').disabled = false;
+    });
+});
+
+// Handle continue button
+document.getElementById('continue-btn').addEventListener('click', function() {
+    if (selectedRunId) {
+        sessionStorage.setItem('selectedRunId', selectedRunId);
+        window.location.href = '/pipeline-config';
+    }
+});
+
+// Handle file upload
+const fileInput = document.getElementById('file-input');
+const dropzone = document.querySelector('.upload-dropzone');
+
+dropzone.addEventListener('click', () => fileInput.click());
+
+dropzone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.classList.add('dragover');
+});
+
+dropzone.addEventListener('dragleave', () => {
+    dropzone.classList.remove('dragover');
+});
+
+dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        fileInput.files = files;
+        handleFileUpload(files[0]);
+    }
+});
+
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        handleFileUpload(e.target.files[0]);
+    }
+});
+
+function handleFileUpload(file) {
+    // TODO: Implement file upload
+    alert('File upload will be implemented in next version');
+}
+</script>
+{% endblock %}

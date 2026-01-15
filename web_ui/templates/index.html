@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Home - PeerLens{% endblock %}
+
+{% set active_step = 0 %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">Peer Review Synthesis System</h1>
+    <p class="hero-subtitle">Transform peer reviews into actionable editorial insights with AI-powered analysis</p>
+    <div class="hero-cta">
+        <a href="/data-selection" class="btn btn-primary btn-large">Start New Analysis</a>
+        <a href="/results" class="btn btn-secondary btn-large">View Results</a>
+    </div>
+</div>
+
+<div class="info-section">
+    <h2>How It Works</h2>
+    <div class="workflow-diagram">
+        <div class="workflow-step">
+            <div class="workflow-icon">📋</div>
+            <h3>1. Input Reviews</h3>
+            <p>Upload or select peer reviews for a manuscript</p>
+            <div class="workflow-example">
+                <strong>Example:</strong> 19 reviews for Parkinson's drug trial
+            </div>
+        </div>
+
+        <div class="workflow-arrow">→</div>
+
+        <div class="workflow-step">
+            <div class="workflow-icon">🎯</div>
+            <h3>2. Extract Issues</h3>
+            <p>AI identifies and categorizes concerns</p>
+            <div class="workflow-example">
+                <strong>Extracts:</strong> Methodology, statistics, clarity issues
+            </div>
+        </div>
+
+        <div class="workflow-arrow">→</div>
+
+        <div class="workflow-step">
+            <div class="workflow-icon">💎</div>
+            <h3>3. Synthesize</h3>
+            <p>Combines reviews into coherent brief</p>
+            <div class="workflow-example">
+                <strong>Creates:</strong> Consensus, issues, action items
+            </div>
+        </div>
+
+        <div class="workflow-arrow">→</div>
+
+        <div class="workflow-step">
+            <div class="workflow-icon">✓</div>
+            <h3>4. Validate</h3>
+            <p>Quality checks and evidence verification</p>
+            <div class="workflow-example">
+                <strong>Ensures:</strong> 95% evidence coverage
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="value-props">
+    <h2>What You Get</h2>
+    <div class="value-grid">
+        <div class="value-card">
+            <div class="value-icon">📊</div>
+            <h3>Consensus Snapshot</h3>
+            <p>Clear summary of overall reviewer sentiment and confidence level</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-icon">🎯</div>
+            <h3>Prioritized Issues</h3>
+            <p>Major and minor issues ranked by importance with evidence excerpts</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-icon">⚡</div>
+            <h3>Disagreements</h3>
+            <p>Conflicts between reviewers explicitly identified with resolution paths</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-icon">✍️</div>
+            <h3>Action Checklist</h3>
+            <p>Concrete, testable actions for authors mapped to specific issues</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-icon">🔗</div>
+            <h3>Full Traceability</h3>
+            <p>Every issue linked to exact reviewer excerpts for transparency</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-icon">⏱️</div>
+            <h3>Time Savings</h3>
+            <p>Reduce synthesis time by 30-50% compared to manual process</p>
+        </div>
+    </div>
+</div>
+
+<div class="stats-section">
+    <h2>Performance</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">76</div>
+            <div class="stat-label">Reviews Processed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">50s</div>
+            <div class="stat-label">Processing Time</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">$0.13</div>
+            <div class="stat-label">Cost per Manuscript</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">74%</div>
+            <div class="stat-label">Validation Pass Rate</div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section">
+    <h2>Ready to Try?</h2>
+    <p>Start synthesizing peer reviews in under a minute</p>
+    <a href="/data-selection" class="btn btn-primary btn-large">Get Started →</a>
+</div>
+
+<div class="tech-details">
+    <h2>Technical Details</h2>
+    <div class="tech-grid">
+        <div class="tech-item">
+            <strong>Pipeline:</strong> DocETL (Map → Resolve → Reduce → Validate)
+        </div>
+        <div class="tech-item">
+            <strong>Models:</strong> GPT-4o for extraction, GPT-4o-mini for validation
+        </div>
+        <div class="tech-item">
+            <strong>Data Sources:</strong> eLife, F1000Research (open peer review)
+        </div>
+        <div class="tech-item">
+            <strong>Output:</strong> Structured JSON + Human-readable briefs
+        </div>
+    </div>
+</div>
+{% endblock %}

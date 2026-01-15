@@ -1,0 +1,366 @@
+{% extends "base.html" %}
+
+{% block title %}Configure Pipeline - PeerLens{% endblock %}
+
+{% set active_step = 2 %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Step 2: Configure Pipeline</h1>
+    <p>Customize synthesis settings (optional - defaults are optimized)</p>
+</div>
+
+<div class="config-container">
+    <form id="pipeline-config-form">
+        <div class="config-section">
+            <h2>Pipeline Settings</h2>
+
+            <div class="config-group">
+                <label for="model-extraction">Extraction Model</label>
+                <select id="model-extraction" name="model_extraction">
+                    <option value="gpt-4o" selected>GPT-4o (Recommended - Highest Quality)</option>
+                    <option value="gpt-4o-mini">GPT-4o-mini (Faster, Lower Cost)</option>
+                </select>
+                <p class="config-help">Model used for extracting issues from reviews</p>
+            </div>
+
+            <div class="config-group">
+                <label for="model-synthesis">Synthesis Model</label>
+                <select id="model-synthesis" name="model_synthesis">
+                    <option value="gpt-4o" selected>GPT-4o (Recommended - Best Synthesis)</option>
+                    <option value="gpt-4o-mini">GPT-4o-mini (Budget Option)</option>
+                </select>
+                <p class="config-help">Model used for combining reviews into briefs</p>
+            </div>
+
+            <div class="config-group">
+                <label for="evidence-requirement">Evidence Requirement</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="evidence-requirement" name="evidence_requirement" checked>
+                    <label for="evidence-requirement" class="switch"></label>
+                </div>
+                <p class="config-help">Require exact excerpts for all major issues (highly recommended)</p>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2>Output Preferences</h2>
+
+            <div class="config-group">
+                <label for="include-minor">Include Minor Issues</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="include-minor" name="include_minor" checked>
+                    <label for="include-minor" class="switch"></label>
+                </div>
+                <p class="config-help">Include minor issues in the editorial brief</p>
+            </div>
+
+            <div class="config-group">
+                <label for="disagreement-detection">Disagreement Detection</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="disagreement-detection" name="disagreement_detection" checked>
+                    <label for="disagreement-detection" class="switch"></label>
+                </div>
+                <p class="config-help">Explicitly identify conflicts between reviewers</p>
+            </div>
+
+            <div class="config-group">
+                <label for="validation-level">Validation Level</label>
+                <select id="validation-level" name="validation_level">
+                    <option value="strict" selected>Strict (95% evidence coverage)</option>
+                    <option value="moderate">Moderate (85% evidence coverage)</option>
+                    <option value="lenient">Lenient (75% evidence coverage)</option>
+                </select>
+                <p class="config-help">Quality validation threshold</p>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2>Advanced Options</h2>
+
+            <div class="config-group">
+                <label for="optimize-pipeline">Enable Optimization</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="optimize-pipeline" name="optimize_pipeline">
+                    <label for="optimize-pipeline" class="switch"></label>
+                </div>
+                <p class="config-help">Use DocETL optimizer to improve pipeline (adds ~20% processing time)</p>
+            </div>
+
+            <div class="config-group">
+                <label for="max-issues">Maximum Issues per Brief</label>
+                <input type="number" id="max-issues" name="max_issues" value="20" min="5" max="50">
+                <p class="config-help">Limit the number of issues included (0 = unlimited)</p>
+            </div>
+        </div>
+
+        <div class="cost-estimate">
+            <h3>💰 Estimated Cost</h3>
+            <div class="estimate-breakdown">
+                <div class="estimate-item">
+                    <span>Extraction (GPT-4o):</span>
+                    <span id="cost-extraction">~$0.25</span>
+                </div>
+                <div class="estimate-item">
+                    <span>Synthesis (GPT-4o):</span>
+                    <span id="cost-synthesis">~$0.13</span>
+                </div>
+                <div class="estimate-item">
+                    <span>Validation (GPT-4o-mini):</span>
+                    <span id="cost-validation">~$0.01</span>
+                </div>
+                <div class="estimate-total">
+                    <strong>Total Estimated:</strong>
+                    <strong id="cost-total">~$0.39</strong>
+                </div>
+            </div>
+            <p class="estimate-note">Based on ~75 reviews. Actual cost may vary.</p>
+        </div>
+
+        <div class="preset-configs">
+            <h3>Quick Presets</h3>
+            <div class="preset-buttons">
+                <button type="button" class="btn btn-secondary" onclick="loadPreset('default')">
+                    Default (Balanced)
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="loadPreset('quality')">
+                    Max Quality
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="loadPreset('budget')">
+                    Budget Mode
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="navigation-buttons">
+    <a href="/data-selection" class="btn btn-secondary">← Back</a>
+    <button id="start-processing" class="btn btn-primary">Start Processing →</button>
+</div>
+
+<script>
+// Load presets
+function loadPreset(preset) {
+    if (preset === 'default') {
+        document.getElementById('model-extraction').value = 'gpt-4o';
+        document.getElementById('model-synthesis').value = 'gpt-4o';
+        document.getElementById('evidence-requirement').checked = true;
+        document.getElementById('validation-level').value = 'strict';
+    } else if (preset === 'quality') {
+        document.getElementById('model-extraction').value = 'gpt-4o';
+        document.getElementById('model-synthesis').value = 'gpt-4o';
+        document.getElementById('evidence-requirement').checked = true;
+        document.getElementById('validation-level').value = 'strict';
+        document.getElementById('optimize-pipeline').checked = true;
+    } else if (preset === 'budget') {
+        document.getElementById('model-extraction').value = 'gpt-4o-mini';
+        document.getElementById('model-synthesis').value = 'gpt-4o-mini';
+        document.getElementById('validation-level').value = 'lenient';
+    }
+    updateCostEstimate();
+}
+
+// Update cost estimate based on selections
+function updateCostEstimate() {
+    const extractionModel = document.getElementById('model-extraction').value;
+    const synthesisModel = document.getElementById('model-synthesis').value;
+
+    let extractionCost = extractionModel === 'gpt-4o' ? 0.25 : 0.05;
+    let synthesisCost = synthesisModel === 'gpt-4o' ? 0.13 : 0.03;
+    let validationCost = 0.01;
+
+    document.getElementById('cost-extraction').textContent = `~$${extractionCost.toFixed(2)}`;
+    document.getElementById('cost-synthesis').textContent = `~$${synthesisCost.toFixed(2)}`;
+    document.getElementById('cost-validation').textContent = `~$${validationCost.toFixed(2)}`;
+
+    const total = extractionCost + synthesisCost + validationCost;
+    document.getElementById('cost-total').textContent = `~$${total.toFixed(2)}`;
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    updateCostEstimate();
+
+    // Update cost on model changes
+    document.getElementById('model-extraction').addEventListener('change', updateCostEstimate);
+    document.getElementById('model-synthesis').addEventListener('change', updateCostEstimate);
+
+    // Handle start processing
+    document.getElementById('start-processing').addEventListener('click', function() {
+        // Save configuration to session storage
+        const config = {
+            model_extraction: document.getElementById('model-extraction').value,
+            model_synthesis: document.getElementById('model-synthesis').value,
+            evidence_requirement: document.getElementById('evidence-requirement').checked,
+            include_minor: document.getElementById('include-minor').checked,
+            disagreement_detection: document.getElementById('disagreement-detection').checked,
+            validation_level: document.getElementById('validation-level').value,
+            optimize_pipeline: document.getElementById('optimize-pipeline').checked,
+            max_issues: document.getElementById('max-issues').value
+        };
+
+        sessionStorage.setItem('pipelineConfig', JSON.stringify(config));
+        window.location.href = '/processing';
+    });
+});
+</script>
+
+<style>
+.config-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.config-section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+}
+
+.config-section h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.config-group {
+    margin-bottom: 24px;
+}
+
+.config-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.config-group select,
+.config-group input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.config-group select:focus,
+.config-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.config-help {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+}
+
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-switch .switch {
+    display: block;
+    width: 50px;
+    height: 28px;
+    background: var(--border-color);
+    border-radius: 14px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.toggle-switch .switch::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .switch {
+    background: var(--primary-color);
+}
+
+.toggle-switch input[type="checkbox"]:checked + .switch::after {
+    transform: translateX(22px);
+}
+
+.cost-estimate {
+    background: #f0f9ff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px solid #bae6fd;
+    margin-bottom: 30px;
+}
+
+.cost-estimate h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.estimate-breakdown {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.estimate-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.estimate-item:last-child {
+    border-bottom: none;
+}
+
+.estimate-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-top: 8px;
+    border-top: 2px solid var(--border-color);
+    font-size: 18px;
+}
+
+.estimate-note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 12px;
+}
+
+.preset-configs {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.preset-configs h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.preset-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+</style>
+{% endblock %}

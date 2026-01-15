@@ -1,0 +1,48 @@
+# Simple Test Pipeline - Extract issues from a single manuscript
+# Use this to test the setup before running the full pipeline
+
+default_model: gpt-4o-mini
+
+datasets:
+  reviews:
+    type: file
+    path: "input/reviews.json"
+    source: local
+
+operations:
+  # Extract issues from reviews (Step A - Map)
+  - name: extract_issues_test
+    type: map
+    prompt: |
+      Analyze this peer review and extract key issues/concerns.
+
+      Review Text:
+      {{ input.review_text }}
+
+      Extract any issues mentioned. For each issue provide:
+      - A brief description
+      - Whether it's major or minor
+      - An exact quote from the review as evidence
+
+      If the review is just approval with no specific issues, note that.
+    output:
+      schema:
+        manuscript_id: string
+        review_id: string
+        issues_found: string
+        has_issues: boolean
+        recommendation: string
+    model: gpt-4o-mini
+
+pipeline:
+  steps:
+    - name: test_extraction
+      input: reviews
+      operations:
+        - extract_issues_test
+      # Only process reviews from first manuscript for testing
+      sample: 5
+
+  output:
+    type: file
+    path: "output/test_extraction.json"
