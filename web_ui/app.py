@@ -257,4 +257,9 @@ def generate_summary_report(briefs):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # Get port from environment variable (Render provides this) or default to 5000
+    port = int(os.environ.get('PORT', 5000))
+    # Bind to 0.0.0.0 to allow external connections (required for Render)
+    # Only enable debug mode if not in production
+    debug = os.environ.get('FLASK_ENV') != 'production'
+    app.run(host='0.0.0.0', port=port, debug=debug)
